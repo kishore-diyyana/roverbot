@@ -1,0 +1,23 @@
+<RoverBotRequest>
+  <position>
+    <x>10</x>
+    <y>10</y>
+    <direction>n</direction>
+  </position>
+  <move>
+    <move>
+      <o>1</o>
+      <r/>
+      <l>90</l>
+      <f>10</f>
+      <b/>
+    </move>
+    <move>
+      <o>2</o>
+      <r>180</r>
+      <l/>
+      <f/>
+      <b>20</b>
+    </move>
+  </move>
+</RoverBotRequest>
