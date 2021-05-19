@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "b071d39e-501b-4149-b705-75d16bfeb8f3",
+		"name": "RoverBot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Rover Events",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"Position\":{\r\n\t\t\t\t\"Direction\":\"N\",\r\n\t\t\t\t\"X\":10,\r\n\t\t\t\t\"Y\":10 \r\n\t},\r\n\t\"Move\":[\r\n\t\t\t{\r\n\t\t\t \"O\":\"1\",\r\n\t\t\t \"L\":90,\r\n\t\t\t \"F\":10\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t \"O\":\"2\",\r\n\t\t\t \"R\":180,\r\n\t\t\t \"B\":20\r\n\t\t\t}\r\n\t]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/roverbot-service/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"roverbot-service",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rover Position",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/roverbot-service/position",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"roverbot-service",
+						"position"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
