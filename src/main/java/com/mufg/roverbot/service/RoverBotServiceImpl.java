@@ -2,9 +2,12 @@ package com.mufg.roverbot.service;
 
 import com.mufg.roverbot.constants.FileConstants;
 import com.mufg.roverbot.constants.Rotation;
+import com.mufg.roverbot.controller.RoverBotRestController;
 import com.mufg.roverbot.domain.*;
 import com.mufg.roverbot.utils.RoverBotUtils;
 import com.mufg.roverbot.validator.RoverValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,7 @@ import java.util.Comparator;
  */
 @Service("RoverBotService")
 public class RoverBotServiceImpl implements RoverBotService {
+    private Logger log = LoggerFactory.getLogger(RoverBotServiceImpl.class);
 
     @Autowired
     RoverValidator validator;
@@ -51,6 +55,7 @@ public class RoverBotServiceImpl implements RoverBotService {
 
         //Create Input and Output XML files.
         processXMLFile(request, response);
+        log.debug("RoverBot createEvents method completed.");
 
         return new ResponseEntity(HttpStatus.CREATED);
 
@@ -93,6 +98,7 @@ public class RoverBotServiceImpl implements RoverBotService {
                 rover.moveBackward(move.getB());
             }
         }
+        log.debug("RoverBot processEvent method completed.");
         return rover;
     }
 
@@ -110,6 +116,7 @@ public class RoverBotServiceImpl implements RoverBotService {
 
         RoverBotUtils.createXMLFile(response, FileConstants.DIR_OUTPUT.getVal(),
                 FileConstants.FILE_NAME_OUTPUT.getVal());
+        log.debug("RoverBot processXMLFile method completed.");
     }
 	
 }

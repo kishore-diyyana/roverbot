@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 
 import javax.validation.Valid;
@@ -26,6 +28,7 @@ import javax.validation.Valid;
 @RequestMapping(value = "/api/roverbot-service", produces = { MediaType.APPLICATION_JSON_VALUE })
 public class RoverBotRestController {
 
+    private Logger log = LoggerFactory.getLogger(RoverBotRestController.class);
     @Autowired
     private RoverBotService service;
 
@@ -35,6 +38,7 @@ public class RoverBotRestController {
      */
     @RequestMapping(value = "/status", method = RequestMethod.GET)
     public String status() {
+        log.info("Rover-Bot Service is up and healthy.");
         return "Rover-Bot Service is up and healthy..."
                 + LocalDate.now();
     }
@@ -55,6 +59,7 @@ public class RoverBotRestController {
      */
     @RequestMapping(value = "/events", method = RequestMethod.POST)
     public ResponseEntity events(@RequestBody @Valid RoverBotRequest request) throws Exception {
+        log.info("RoverBot events method started.");
         return service.createEvents(request);
     }
 
@@ -71,6 +76,7 @@ public class RoverBotRestController {
      */
     @RequestMapping(value = "/position", method = RequestMethod.GET)
     public ResponseEntity getPosition() throws Exception {
+        log.info("RoverBot getPosition method started.");
         return service.getPosition();
     }
 }

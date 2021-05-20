@@ -1,5 +1,7 @@
 package com.mufg.roverbot.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,11 +21,12 @@ import java.util.List;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    private Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
-        System.out.println("RoverBot Exception Occurred - "+ ex); //TODO - /Log exceptions in log streams
+        log.error("RoverBot Exception Occurred - ", ex);
         //ex.printStackTrace();
         return new ResponseEntity( HttpStatus.INTERNAL_SERVER_ERROR);
     }
